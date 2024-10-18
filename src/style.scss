@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
 main{
-    background: linear-gradient(109.5deg, rgb(13, 11, 136) 9.4%, rgb(86, 255, 248) 78.4%);
-    font-family: "Teachers", sans sans-serif;
+    min-height: calc(100vh - 3rem);
+    background: linear-gradient(rgb(21, 13, 107) 1.1%,
+     rgb(188, 16, 80) 130.5%);
+    font-family: "Teachers", sans-serif;
+    color: white;
 }
