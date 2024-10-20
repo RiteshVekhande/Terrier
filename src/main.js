@@ -1,54 +1,66 @@
-const selectEL = document.querySelector("select");
-const carouselContainerEL = ducument.querySelector(".carousel-inner");
-
-console.log(selectEL, corouselContainerEl);
+// DOM Selection
+const selectEl = document.querySelector("select");
+const carouselContainerEl = document.querySelector(".carousel-inner");
 
 const BASE_URL = "https://dog.ceo/api/";
 
-//Mark: fetch
-//gets the list of dog breads from api.
-async function getdogsList(){
-    try{
+// === MARK: Fetch
+// Gets the list of dog breeds from api
+async function getDogsList() {
+  try {
     const response = await fetch(`${BASE_URL}breeds/list/all`);
     const data = await response.json();
-    return Object.keys(data.massage);
-
-    console.log(data);
-}catch (error){
-    console.log(error);
+    return Object.keys(data.message);
+  } catch (err) {
+    console.log(err);
+  }
 }
-}
-getdogsList();
 
-//Gets list of 10 images on breed.
-async function getDogImages(breed){
-    try{
-        const res = await fetch(`${BASE_URL}breeds/list/all/a`)
+// Gets list of 10 images on breed
+async function getDogImages(breed) {
+  try {
+    const res = await fetch(`${BASE_URL}breed/${breed}/images`);
     const data = await res.json();
-    return data.massage.slice(0,10);
-    console.log(data);
-}catch(err){
-    conslose.log(err);
-
+    return data.message.slice(0, 10);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
+// === MARK: Render
+async function renderOptions() {
+  const breedList = await getDogsList();
 
-getDogImages("huskey");
-console.log("ended")
-
-//== Mark: render
-async function renderOption(){
-    const breedLeast = awiat getdogsList();
-    for(breed of breedLeast){
-        const option = document.createElement("option");
-        option.textContent= breed;
-        oprion.value = breed
-        selectEL.appendChild(option);
-    }
-    
+  for (let breed of breedList) {
+    const option = document.createElement("option");
+    option.textContent = breed[0].toUpperCase() + breed.slice(1).toLowerCase();
+    option.value = breed;
+    selectEl.appendChild(option);
+  }
 }
 
-function renderCarousel(){
+renderOptions();
 
+async function renderCarousel(breed) {
+  carouselContainerEl.innerHTML = "";
+  const images = await getDogImages(breed);
+
+  //   Add active to just the first item
+  for (let i = 0; i < images.length; i++) {
+    const div = document.createElement("div");
+    div.classList.add("carousel-item", i === 0 && "active");
+    div.innerHTML = `<img
+              src="${images[i]}"
+              class="d-block w-100 rounded-3"
+              alt="${breed}"
+            />`;
+    carouselContainerEl.appendChild(div);
+  }
 }
-}
+
+// This runs on select change
+selectEl.addEventListener("change", function (e) {
+  renderCarousel(e.target.value);
+});
+
+renderCarousel("affenpinscher");

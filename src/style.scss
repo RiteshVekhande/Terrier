@@ -1,8 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
-main{
-    min-height: calc(100vh - 3rem);
-    background: linear-gradient(rgb(21, 13, 107) 1.1%,
-     rgb(188, 16, 80) 130.5%);
-    font-family: "Teachers", sans-serif;
-    color: white;
+@import url("https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap");
+
+body {
+  min-height: calc(100vh - 3rem);
+  background: linear-gradient(
+    109.5deg,
+    rgb(41, 39, 165) 9.4%,
+    rgb(133, 231, 228) 78.4%
+  );
+  font-family: "Teachers", sans-serif;
+  color: white;
+}
+
+@media screen and (min-width: 700px) {
+  .carousel-item {
+    width: 50% !important;
+  }
 }
