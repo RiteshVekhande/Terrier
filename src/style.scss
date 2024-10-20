@@ -2,11 +2,10 @@
 
 body {
   min-height: calc(100vh - 3rem);
-  background: linear-gradient(
-    109.5deg,
-    rgb(41, 39, 165) 9.4%,
-    rgb(133, 231, 228) 78.4%
-  );
+  //background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+  //background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+  background-image: linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%);
+  background-blend-mode: multiply;
   font-family: "Teachers", sans-serif;
   color: white;
 }
